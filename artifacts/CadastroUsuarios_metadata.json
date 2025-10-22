@@ -1,0 +1,102 @@
+{
+	"compiler": {
+		"version": "0.8.24+commit.e11b9ed9"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_nome",
+						"type": "string"
+					}
+				],
+				"name": "cadastrarUsuario",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "listarUsuarios",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "address",
+								"name": "endereco",
+								"type": "address"
+							},
+							{
+								"internalType": "string",
+								"name": "nome",
+								"type": "string"
+							}
+						],
+						"internalType": "struct CadastroUsuarios.Cadastro[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_id",
+						"type": "uint256"
+					}
+				],
+				"name": "removerUsuario",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"21.10/contracts/CadastrarUsuario.sol": "CadastroUsuarios"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"21.10/contracts/CadastrarUsuario.sol": {
+			"keccak256": "0x44cc59724032814c1e116a2af675c8a56fba64adb25630e67c9fa7eb0b20328a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://a7f24ee8da262291be89d3219876dceb18bdcac2b8261cf335b223c1c7745ca2",
+				"dweb:/ipfs/QmZ166NtTDhz2TpeLXhTg81ajJQyusHxEKhvnqfiwSLD8X"
+			]
+		}
+	},
+	"version": 1
+}

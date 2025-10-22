@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cadastro de Usuários</title>
+  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      padding: 20px;
+    }
+    h1 {
+      color: #333;
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 500px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 16px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      background: #eee;
+      margin: 5px 0;
+      padding: 10px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Cadastro de Usuários</h1>
+
+    <input type="text" id="nome" placeholder="Nome do usuário" />
+    <button onclick="cadastrarUsuario()">Cadastrar</button>
+
+    <input type="number" id="id" placeholder="ID do usuário para remover" />
+    <button onclick="removerUsuario()">Remover</button>
+
+    <button onclick="listarUsuarios()">Listar Usuários</button>
+    <ul id="listaUsuarios"></ul>
+  </div>
+
+  <script>
+    const abi = [
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_nome",
+				"type": "string"
+			}
+		],
+		"name": "cadastrarUsuario",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_id",
+				"type": "uint256"
+			}
+		],
+		"name": "removerUsuario",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [],
+		"name": "listarUsuarios",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "endereco",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "nome",
+						"type": "string"
+					}
+				],
+				"internalType": "struct CadastroUsuarios.Cadastro[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+];
+    const contractAddress = "0x145F614bCDFD4917Ca65828dFE89c5Ac14Bc1b1D"; // substitua pelo endereço do contrato
+    let contract;
+
+    window.addEventListener('load', async () => {
+      if (window.ethereum) {
+        window.web3 = new Web3(window.ethereum);
+        await window.ethereum.request({ method: 'eth_requestAccounts' });
+        contract = new web3.eth.Contract(abi, contractAddress);
+      } else {
+        alert("Instale o MetaMask para usar esta interface.");
+      }
+    });
+
+    async function cadastrarUsuario() {
+      const nome = document.getElementById("nome").value;
+      const accounts = await web3.eth.getAccounts();
+      await contract.methods.cadastrarUsuario(nome).send({ from: accounts[0] });
+      alert("Usuário cadastrado!");
+    }
+
+    async function removerUsuario() {
+      const id = document.getElementById("id").value;
+      const accounts = await web3.eth.getAccounts();
+      await contract.methods.removerUsuario(id).send({ from: accounts[0] });
+      alert("Usuário removido!");
+    }
+
+    async function listarUsuarios() {
+      const lista = document.getElementById("listaUsuarios");
+      lista.innerHTML = "";
+      const usuarios = await contract.methods.listarUsuarios().call();
+      usuarios.forEach((usuario, index) => {
+        const li = document.createElement("li");
+        li.textContent = `#${index} - ${usuario.nome} (${usuario.endereco})`;
+        lista.appendChild(li);
+      });
+    }
+  </script>
+</body>
+</html>

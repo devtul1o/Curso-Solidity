@@ -1,0 +1,78 @@
+{
+	"compiler": {
+		"version": "0.8.24+commit.e11b9ed9"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "a",
+						"type": "address"
+					}
+				],
+				"name": "consultarNome",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "nm",
+						"type": "string"
+					}
+				],
+				"name": "registrarNome",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"21.10/contracts/ExemploMapping.sol": "ExemploMapping"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"21.10/contracts/ExemploMapping.sol": {
+			"keccak256": "0x5d6bc72db0c3dc73467dc3a8cd1ec43ac192e863bd8339abf6884a182aeed529",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://583f0b0f5441a3d84b27e1aca91523641617efc21349e86d76ee1204a53a69eb",
+				"dweb:/ipfs/QmSEpmFSMdZtiNyxRdVWtU81VKZQMGW3QpGyReLJSTZbsW"
+			]
+		}
+	},
+	"version": 1
+}

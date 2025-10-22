@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Interface Cofre (web3.js)</title>
+  <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0d1117;
+      color: #e6edf3;
+      padding: 30px;
+    }
+    button {
+      margin: 5px;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background: #238636;
+      color: white;
+      font-weight: bold;
+    }
+    input {
+      padding: 6px;
+      margin: 5px;
+      border-radius: 6px;
+      border: 1px solid #30363d;
+      background: #161b22;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h2>💰 Cofre Blockchain</h2>
+
+  <button onclick="conectar()">🔗 Conectar MetaMask</button>
+  <p id="conta">Conta: <i>não conectada</i></p>
+
+  <hr>
+  <h3>💵 Depositar</h3>
+  <input id="valorDeposito" type="number" step="0.0001" placeholder="Valor em ETH">
+  <button onclick="depositar()">Depositar</button>
+
+  <h3>💳 Ver saldo (somente dono)</h3>
+  <button onclick="verSaldo()">Ver saldo</button>
+
+  <h3>📤 Sacar</h3>
+  <input id="valorSaque" type="number" step="0.0001" placeholder="Valor em ETH">
+  <button onclick="sacar()">Sacar</button>
+
+  <h3>📦 Transferir</h3>
+  <input id="destinatario" type="text" placeholder="Endereço do destinatário">
+  <input id="valorTransferencia" type="number" step="0.0001" placeholder="Valor em ETH">
+  <button onclick="transferir()">Transferir</button>
+
+  <script>
+    let web3;
+    let contrato;
+    let conta;
+    let dono;
+
+    const abi = [
+      {
+        "inputs": [],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+      },
+      {
+        "inputs": [],
+        "name": "depositar",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "dono",
+        "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "saldoDoContrato",
+        "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          { "internalType": "address payable", "name": "destinatario", "type": "address" },
+          { "internalType": "uint256", "name": "valor", "type": "uint256" }
+        ],
+        "name": "transferirPara",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [{ "internalType": "uint256", "name": "valor", "type": "uint256" }],
+        "name": "sacar",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      { "stateMutability": "payable", "type": "receive" }
+    ];
+
+    // 👉 coloque aqui o endereço do contrato implantado:
+    const enderecoContrato = "0xb3Cae3C8C5beD1fEa97A3130E585CA4f8CDAf0aE";
+
+    async function conectar() {
+      if (window.ethereum) {
+        web3 = new Web3(window.ethereum);
+        await window.ethereum.request({ method: "eth_requestAccounts" });
+        const contas = await web3.eth.getAccounts();
+        conta = contas[0];
+        document.getElementById("conta").innerHTML = "Conta: " + conta;
+
+        contrato = new web3.eth.Contract(abi, enderecoContrato);
+        dono = await contrato.methods.dono().call();
+        console.log("Dono do contrato:", dono);
+      } else {
+        alert("MetaMask não detectado!");
+      }
+    }
+
+    async function depositar() {
+      const valor = document.getElementById("valorDeposito").value;
+      if (!valor) return alert("Informe um valor!");
+      await contrato.methods.depositar().send({
+        from: conta,
+        value: web3.utils.toWei(valor, "ether")
+      });
+      alert("Depósito realizado!");
+    }
+
+    async function verSaldo() {
+      try {
+        if (conta.toLowerCase() !== dono.toLowerCase()) {
+          alert("Apenas o dono pode ver o saldo do contrato.");
+          return;
+        }
+
+        // 🔧 chamada simplificada e compatível com Metamask
+        const saldo = await contrato.methods.saldoDoContrato().call({ from: conta });
+        alert("Saldo do contrato: " + web3.utils.fromWei(saldo, "ether") + " ETH");
+      } catch (erro) {
+        console.error(erro);
+        alert("Erro ao buscar saldo: " + erro.message);
+      }
+    }
+
+    async function sacar() {
+      const valor = document.getElementById("valorSaque").value;
+      if (!valor) return alert("Informe o valor!");
+      await contrato.methods.sacar(web3.utils.toWei(valor, "ether")).send({ from: conta });
+      alert("Saque realizado!");
+    }
+
+    async function transferir() {
+      const destinatario = document.getElementById("destinatario").value;
+      const valor = document.getElementById("valorTransferencia").value;
+      if (!destinatario || !valor) return alert("Informe os dados!");
+      await contrato.methods
+        .transferirPara(destinatario, web3.utils.toWei(valor, "ether"))
+        .send({ from: conta });
+      alert("Transferência realizada!");
+    }
+  </script>
+</body>
+</html>

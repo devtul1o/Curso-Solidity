@@ -1,0 +1,41 @@
+{
+  "name": "LogicV1",
+  "address": "0x4a44ba4f78d07f7c6a569050013f50a0afa7c317",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "incrementar",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "numero",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "version",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    }
+  ],
+  "filePath": "electron/21.10/contracts/LogicV1.sol",
+  "pinnedAt": 1761158623492
+}

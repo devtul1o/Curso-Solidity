@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Registro de Nomes</title>
+  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+  <style>
+    body {
+      background: linear-gradient(to right, #1e3c72, #2a5298);
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 28px;
+    }
+
+    .form-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #00c6ff;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      white-space: nowrap;
+    }
+
+    button:hover {
+      background-color: #0072ff;
+    }
+
+    .result {
+      margin-top: 20px;
+      background: rgba(255,255,255,0.2);
+      padding: 15px;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Registro de Nomes</h1>
+
+    <div class="form-group">
+      <input type="text" id="nome" placeholder="Digite seu nome" />
+      <button onclick="registrarNome()">Registrar</button>
+    </div>
+
+    <div class="form-group">
+      <input type="text" id="endereco" placeholder="Endereço Ethereum" />
+      <button onclick="consultarNome()">Consultar</button>
+    </div>
+
+    <div class="result" id="resultado"></div>
+  </div>
+
+  <script>
+    const abi = [
+      {
+        "inputs": [{ "internalType": "string", "name": "nm", "type": "string" }],
+        "name": "registrarNome",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [{ "internalType": "address", "name": "a", "type": "address" }],
+        "name": "consultarNome",
+        "outputs": [{ "internalType": "string", "name": "", "type": "string" }],
+        "stateMutability": "view",
+        "type": "function"
+      }
+    ];
+
+    const contractAddress = "0xb17B3F1A15C265e3955a26A0C17d96ae9e3F75dF"; // substitua pelo endereço real
+    let contract;
+
+    window.addEventListener('load', async () => {
+      if (window.ethereum) {
+        window.web3 = new Web3(window.ethereum);
+        await window.ethereum.request({ method: 'eth_requestAccounts' });
+        contract = new web3.eth.Contract(abi, contractAddress);
+      } else {
+        alert("Instale o MetaMask para usar esta interface.");
+      }
+    });
+
+    async function registrarNome() {
+      const nome = document.getElementById("nome").value;
+      const accounts = await web3.eth.getAccounts();
+      await contract.methods.registrarNome(nome).send({ from: accounts[0] });
+      document.getElementById("resultado").textContent = "Nome registrado com sucesso!";
+    }
+
+    async function consultarNome() {
+      const endereco = document.getElementById("endereco").value;
+      const nome = await contract.methods.consultarNome(endereco).call();
+      document.getElementById("resultado").textContent = `Nome associado: ${nome || "Não encontrado"}`;
+    }
+  </script>
+</body>
+</html>
