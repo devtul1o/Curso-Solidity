@@ -1,129 +1,104 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Sistema de Registro de Baterias Defeituosas</title>
   <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+    /* --------------------------
+       ESTILO INSPIRADO EM MOURA
+       -------------------------- */
 
     :root {
-      --cor-primaria: #0033a0;
-      --cor-secundaria: #ffd700;
-      --cor-fundo: #f4f7fc;
-      --cor-texto: #333;
-      --cor-branca: #ffffff;
-      --sombra: 0 4px 15px rgba(0, 0, 0, 0.1);
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+      --azul-escuro: #0c1c40;
+      --amarelo-moura: #ffd200;
+      --cinza-fundo: #f4f6f9;
+      --branco: #ffffff;
+      --texto: #2e2e2e;
+      --sombra: 0 4px 12px rgba(0, 0, 0, 0.1);
+      --radius: 10px;
+      --transicao: all 0.3s ease;
     }
 
     body {
-      font-family: 'Roboto', sans-serif;
-      background-color: var(--cor-fundo);
-      color: var(--cor-texto);
-      line-height: 1.6;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
+      margin: 0;
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+      background-color: var(--cinza-fundo);
+      color: var(--texto);
+      overflow-x: hidden;
     }
 
     header {
-      background-color: var(--cor-primaria);
-      color: var(--cor-branca);
-      padding: 1rem 0;
+      background: linear-gradient(135deg, var(--azul-escuro), #102b5a);
+      color: var(--branco);
+      padding: 25px 20px;
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
       box-shadow: var(--sombra);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+      text-transform: uppercase;
     }
 
     .navbar {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 20px;
-    }
-
-    .logo {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--cor-secundaria);
+      justify-content: center;
+      background-color: var(--amarelo-moura);
+      padding: 12px 0;
+      box-shadow: var(--sombra);
     }
 
     .nav-menu {
-      list-style: none;
       display: flex;
-      gap: 25px;
+      gap: 40px;
     }
 
     .nav-link {
-      color: var(--cor-branca);
+      color: var(--azul-escuro);
       text-decoration: none;
-      font-weight: 500;
-      padding: 8px 15px;
-      border-radius: 5px;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    .nav-link:hover, .nav-link.active {
-      background-color: var(--cor-secundaria);
-      color: var(--cor-primaria);
-    }
-
-    #btnConectarCarteira {
-      background-color: var(--cor-secundaria);
-      color: var(--cor-primaria);
-      font-weight: 700;
+      font-weight: 600;
       padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
+      border-radius: 50px;
+      transition: var(--transicao);
     }
 
-    #statusConexao {
-      margin-top: 5px;
-      font-size: 0.8rem;
-      color: #ccc;
+    .nav-link:hover,
+    .nav-link.active {
+      background-color: var(--azul-escuro);
+      color: var(--branco);
     }
 
     main {
-      padding-top: 40px;
+      padding: 60px 8%;
+      background-color: var(--cinza-fundo);
+      min-height: calc(100vh - 160px);
+      animation: fadeIn 1s ease;
     }
 
-    .content-section {
-      background-color: var(--cor-branca);
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: var(--sombra);
-      margin-bottom: 30px;
-      display: none;
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
     }
 
-    .content-section.active {
-      display: block;
+    h2 {
+      font-size: 1.9rem;
+      color: var(--azul-escuro);
+      margin-bottom: 25px;
+      border-left: 6px solid var(--amarelo-moura);
+      padding-left: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
-
-    h1, h2 {
-      color: var(--cor-primaria);
-      margin-bottom: 20px;
-    }
-
-    h1 { text-align: center; font-size: 2.5rem; }
-    h2 { font-size: 1.8rem; border-bottom: 3px solid var(--cor-secundaria); padding-bottom: 10px; }
 
     .form-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 35px; /* 🔹 Aumentado o espaçamento entre os campos */
+      margin-bottom: 45px; /* 🔹 Maior respiro entre seções */
+      background-color: var(--branco);
+      border-radius: var(--radius);
+      padding: 35px;
+      box-shadow: var(--sombra);
     }
 
     .form-group {
@@ -132,113 +107,154 @@
     }
 
     label {
-      font-weight: 500;
+      font-weight: 600;
+      color: var(--azul-escuro);
       margin-bottom: 8px;
-      color: #555;
     }
 
     input, select {
       padding: 12px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
+      border-radius: 6px;
+      border: 1px solid #d1d5db;
       font-size: 1rem;
+      transition: var(--transicao);
+    }
+
+    input:focus, select:focus {
+      border-color: var(--amarelo-moura);
+      box-shadow: 0 0 6px rgba(255, 210, 0, 0.5);
+      outline: none;
     }
 
     .btn-submit {
-      background-color: var(--cor-primaria);
-      color: var(--cor-branca);
-      padding: 15px 25px;
+      background: linear-gradient(135deg, var(--azul-escuro), #17376b);
+      color: var(--branco);
+      padding: 14px 32px;
       border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1.1rem;
+      border-radius: 50px;
       font-weight: 700;
-      margin-top: 20px;
-      grid-column: 1 / -1;
+      text-transform: uppercase;
+      cursor: pointer;
+      letter-spacing: 1px;
+      box-shadow: var(--sombra);
+      transition: var(--transicao);
+      margin-top: 25px; /* 🔹 Espaço entre botões e campos */
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      background: linear-gradient(135deg, #17376b, var(--azul-escuro));
     }
 
     .table-container {
       overflow-x: auto;
+      margin-top: 30px;
+      background-color: var(--branco);
+      border-radius: var(--radius);
+      box-shadow: var(--sombra);
+      padding: 25px;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 20px;
-    }
-
-    th, td {
-      padding: 15px;
-      text-align: left;
-      border-bottom: 1px solid #ddd;
     }
 
     thead {
-      background-color: var(--cor-primaria);
-      color: var(--cor-branca);
+      background: linear-gradient(135deg, var(--azul-escuro), #102b5a);
+      color: var(--branco);
     }
 
-    tbody tr:nth-child(even) {
-      background-color: var(--cor-fundo);
+    th, td {
+      padding: 14px 12px;
+      text-align: left;
+      border-bottom: 1px solid #e5e7eb;
     }
 
     tbody tr:hover {
-      background-color: #e9effc;
+      background-color: rgba(255, 210, 0, 0.1);
+      transition: var(--transicao);
     }
 
-    #notificacao {
+    #totalBaterias {
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.1rem;
+      background-color: #f0f2f5;
+    }
+
+    .notificacao {
       position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
+      bottom: 25px;
+      right: 25px;
       padding: 15px 30px;
-      border-radius: 8px;
-      color: var(--cor-branca);
-      font-weight: 500;
+      border-radius: 50px;
+      font-weight: 600;
+      color: var(--branco);
       box-shadow: var(--sombra);
       opacity: 0;
       visibility: hidden;
-      transition: opacity 0.5s ease, visibility 0.5s ease;
+      transition: var(--transicao);
+      z-index: 9999;
     }
 
-    #notificacao.show { opacity: 1; visibility: visible; }
-    #notificacao.success { background-color: #28a745; }
-    #notificacao.error { background-color: #dc3545; }
+    .notificacao.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .notificacao.sucesso {
+      background-color: #4BB543;
+    }
+
+    .notificacao.erro {
+      background-color: #DC3545;
+    }
+
+    .content-section {
+      display: none;
+    }
+
+    .content-section.active {
+      display: block;
+      animation: fadeIn 0.6s ease;
+    }
+
+    footer {
+      text-align: center;
+      background-color: var(--azul-escuro);
+      color: var(--branco);
+      padding: 20px;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      box-shadow: var(--sombra);
+    }
+
   </style>
 </head>
 <body>
-<header>
+  <header>Sistema de Registro de Baterias Defeituosas</header>
   <div class="navbar">
-    <div class="logo">MOURA</div>
-    <ul class="nav-menu">
-      <li><a href="#" class="nav-link active" onclick="mostrarSecao('registro')">Registrar Bateria</a></li>
-      <li><a href="#" class="nav-link" onclick="mostrarSecao('listar')">Listar Baterias</a></li>
-    </ul>
-    <div>
-      <button id="btnConectarCarteira">Conectar Carteira</button>
-      <div id="statusConexao">Status: Desconectado</div>
+    <div class="nav-menu">
+      <a href="#" class="nav-link active" onclick="mostrarSecao('registro')">Registrar Bateria</a>
+      <a href="#" class="nav-link" onclick="mostrarSecao('gerenciar')">Gerenciar Baterias</a>
     </div>
   </div>
-</header>
 
-  <main class="container">
-    <h1>Sistema de Registro de Baterias Defeituosas</h1>
-
+  <main>
     <section id="registro" class="content-section active">
       <h2>Registrar Nova Bateria Defeituosa</h2>
       <div class="form-grid">
         <div class="form-group">
-          <label for="tipo">Tipo da Bateria (Ex: AGM, EFB):</label>
+          <label for="tipo">Tipo de Bateria:</label>
           <input id="tipo" type="text" />
         </div>
         <div class="form-group">
           <label for="uso">Tipo de Uso:</label>
           <select id="uso">
-            <option value="automotivo">Automotivo</option>
-            <option value="estacionária">Estacionária</option>
-            <option value="acumulador">Acumulador</option>
-            <option value="náutica">Náutica</option>
-            <option value="industrial">Industrial</option>
+            <option value="Automotivo">Automotivo</option>
+            <option value="Estacionário">Estacionário</option>
+            <option value="Industrial">Industrial</option>
           </select>
         </div>
         <div class="form-group">
@@ -247,30 +263,55 @@
         </div>
         <div class="form-group">
           <label for="dataProducao">Data de Produção:</label>
-        <input id="dataProducao" type="date" />
+          <input id="dataProducao" type="date" />
         </div>
         <div class="form-group">
           <label for="lote">Lote de Fabricação:</label>
           <input id="lote" type="text" />
         </div>
-        <button class="btn-submit" onclick="registrarBateria()">Registrar Bateria</button>
       </div>
+      <button class="btn-submit" onclick="registrarBateria()">Registrar Bateria</button>
     </section>
 
-    <section id="listar" class="content-section">
-      <h2>Baterias Defeituosas Registradas</h2>
-      <button class="btn-submit" onclick="listarBaterias()">Listar Baterias</button>
+    <section id="gerenciar" class="content-section">
+      <h2>Gerenciar Baterias</h2>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="totalBaterias">Total de Baterias Registradas:</label>
+          <input id="totalBaterias" type="text" disabled />
+          <button class="btn-submit" onclick="atualizarTotal()">Atualizar</button>
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="consultaId">ID da Bateria:</label>
+          <input id="consultaId" type="number" placeholder="Digite o ID" />
+          <button class="btn-submit" onclick="consultarPorId()">Consultar por ID</button>
+        </div>
+
+        <div class="form-group">
+          <label for="serialRemover">Serial para Remover:</label>
+          <input id="serialRemover" type="text" placeholder="Número de série" />
+          <button class="btn-submit" style="background: linear-gradient(135deg, #b32020, #8b0000);" onclick="removerPorSerial()">Remover</button>
+        </div>
+      </div>
+
+      <h2>Lista Completa de Baterias</h2>
+      <button class="btn-submit" onclick="listarBaterias()">Atualizar Lista</button>
+
       <div class="table-container">
         <table>
           <thead>
             <tr>
               <th>ID</th>
               <th>Nº de Série</th>
-                            <th>Tipo</th>
+              <th>Tipo</th>
               <th>Uso</th>
               <th>Lote</th>
-              <th>Data de Produção</th>
-              <th>Data de Registro</th>
+              <th>Data Produção</th>
+              <th>Data Registro</th>
             </tr>
           </thead>
           <tbody id="lista"></tbody>
@@ -279,9 +320,12 @@
     </section>
   </main>
 
-  <div id="notificacao"></div>
+  <footer>© 2025 Moura EnergyTech — Todos os direitos reservados</footer>
 
-  <script>
+  <div id="notificacao" class="notificacao"></div>
+
+  <!-- JS original mantido -->
+   <script>
     const abi = [
 	{
 		"anonymous": false,
@@ -301,39 +345,6 @@
 		],
 		"name": "BateriaRegistrada",
 		"type": "event"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_tipo",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_uso",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_numeroSerie",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_dataProducao",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_lote",
-				"type": "string"
-			}
-		],
-		"name": "registrarBateria",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
 	},
 	{
 		"inputs": [
@@ -452,9 +463,55 @@
 		],
 		"stateMutability": "view",
 		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_tipo",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_uso",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_numeroSerie",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_dataProducao",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_lote",
+				"type": "string"
+			}
+		],
+		"name": "registrarBateria",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "removerBateria",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
 	}
-];
-    const contratoEndereco = "0x95A0A6F7872a152B937DbDbC49f345ce271bFFbC";
+    ];
+    const enderecoContrato = "0x45771D29DE0eD1308Cc03C7bB74a23E31844D5A8";
 
     let web3;
     let contrato;
@@ -463,15 +520,11 @@
       if (window.ethereum) {
         web3 = new Web3(window.ethereum);
         await window.ethereum.request({ method: 'eth_requestAccounts' });
-        contrato = new web3.eth.Contract(abi, contratoEndereco);
-        document.getElementById("statusConexao").textContent = "Status: Conectado";
-        mostrarNotificacao("success", "✅ Carteira conectada!");
+        contrato = new web3.eth.Contract(abi, enderecoContrato);
       } else {
-        mostrarNotificacao("error", "⚠️ MetaMask não detectado.");
+        mostrarNotificacao("erro", "MetaMask não detectado.");
       }
     }
-
-    document.getElementById("btnConectarCarteira").addEventListener("click", conectar);
 
     async function registrarBateria() {
       await conectar();
@@ -482,10 +535,14 @@
       const lote = document.getElementById("lote").value;
 
       const contas = await web3.eth.getAccounts();
-      await contrato.methods.registrarBateria(tipo, uso, numeroSerie, dataProducao, lote)
-        .send({ from: contas[0] });
-
-      mostrarNotificacao("success", "✅ Bateria registrada com sucesso!");
+      try {
+        await contrato.methods.registrarBateria(tipo, uso, numeroSerie, dataProducao, lote)
+          .send({ from: contas[0] });
+        mostrarNotificacao("sucesso", "Bateria registrada com sucesso!");
+      } catch (err) {
+        console.error(err);
+        mostrarNotificacao("erro", "Erro ao registrar bateria.");
+      }
     }
 
     async function listarBaterias() {
@@ -494,38 +551,80 @@
       const lista = document.getElementById("lista");
       lista.innerHTML = "";
 
-      baterias.forEach((b, i) => {
-        const row = document.createElement("tr");
-        const dataRegistro = new Date().toLocaleDateString("pt-BR");
-        row.innerHTML = `
-          <td>${i}</td>
-          <td>${b.numeroSerie}</td>
-          <td>${b.tipo}</td>
-          <td>${b.uso}</td>
-          <td>${b.lote}</td>
-          <td>${b.dataProducao}</td>
-          <td>${dataRegistro}</td>
+      baterias.forEach((bateria, index) => {
+        const linha = document.createElement("tr");
+        linha.innerHTML = `
+          <td>${index}</td>
+          <td>${bateria.numeroSerie}</td>
+          <td>${bateria.tipo}</td>
+          <td>${bateria.uso}</td>
+          <td>${bateria.lote}</td>
+          <td>${bateria.dataProducao}</td>
+          <td>${new Date().toLocaleDateString("pt-BR")}</td>
         `;
-        lista.appendChild(row);
+        lista.appendChild(linha);
       });
     }
 
+    async function atualizarTotal() {
+      await conectar();
+      const baterias = await contrato.methods.listar().call();
+      document.getElementById("totalBaterias").value = baterias.length;
+    }
+
+    async function consultarPorId() {
+      await conectar();
+      const id = document.getElementById("consultaId").value;
+      try {
+        const b = await contrato.methods.getBateria(id).call();
+        mostrarNotificacao("sucesso", `ID ${id}: ${b.numeroSerie}, ${b.tipo}, ${b.uso}`);
+      } catch {
+        mostrarNotificacao("erro", "ID inválido ou não encontrado.");
+      }
+    }
+
+    async function removerPorSerial() {
+      await conectar();
+      const serial = document.getElementById("serialRemover").value;
+      const baterias = await contrato.methods.listar().call();
+      const contas = await web3.eth.getAccounts();
+
+      let removido = false;
+      for (let i = 0; i < baterias.length; i++) {
+        if (baterias[i].numeroSerie === serial) {
+          await contrato.methods.removerBateria(i).send({ from: contas[0] });
+          removido = true;
+          break;
+        }
+      }
+
+      if (removido) {
+        mostrarNotificacao("sucesso", `Bateria com serial ${serial} removida.`);
+        listarBaterias();
+      } else {
+        mostrarNotificacao("erro", "Serial não encontrado.");
+      }
+    }
+
     function mostrarSecao(id) {
-      document.querySelectorAll(".content-section").forEach(sec => sec.classList.remove("active"));
+      document.querySelectorAll(".content-section").forEach(secao => {
+        secao.classList.remove("active");
+      });
       document.getElementById(id).classList.add("active");
 
-      document.querySelectorAll(".nav-link").forEach(link => link.classList.remove("active"));
+      document.querySelectorAll(".nav-link").forEach(link => {
+        link.classList.remove("active");
+      });
       document.querySelector(`.nav-link[onclick="mostrarSecao('${id}')"]`).classList.add("active");
     }
 
-    function mostrarNotificacao(tipo, mensagem = "") {
+    function mostrarNotificacao(tipo, mensagem) {
       const notificacao = document.getElementById("notificacao");
-      notificacao.className = `show ${tipo}`;
+      notificacao.className = `notificacao show ${tipo}`;
       notificacao.textContent = mensagem;
       setTimeout(() => {
-        notificacao.className = "";
-        notificacao.textContent = "";
-      }, 3000);
+        notificacao.className = "notificacao";
+      }, 4000);
     }
   </script>
 </body>

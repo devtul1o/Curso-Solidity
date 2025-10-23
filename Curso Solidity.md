@@ -12,145 +12,145 @@
 
 Web3:
 
-&nbsp;- Do centralizado para o 100% distribuído
+ - Do centralizado para o 100% distribuído
 
-&nbsp;- Sem controle centralizado ou domínio único
+ - Sem controle centralizado ou domínio único
 
-&nbsp;- Setor emergente
-
-
-
-&nbsp;- "Estamos nas mãos das Bigtechs, a Web3 visa a ruptura com esse modelo."
+ - Setor emergente
 
 
 
-&nbsp;- O que difere um sistema em blockchain de um sistema convencional?
+ - "Estamos nas mãos das Bigtechs, a Web3 visa a ruptura com esse modelo."
+
+
+
+ - O que difere um sistema em blockchain de um sistema convencional?
 
 Blockchain é mais seguro e resistente a fraude.
 
 
 
-&nbsp;- Tolkenização imobiliária
+ - Tolkenização imobiliária
 
-&nbsp;- Descentralização financeira: criptomoedas e contratos inteligentes
+ - Descentralização financeira: criptomoedas e contratos inteligentes
 
-&nbsp;- Áreas como logística, saúde, votação e propriedade intelectual já usam
-
-
-
-&nbsp;- Supply-Chain: gestão da cadeia de abastecimento
-
-&nbsp;- Turismo: avaliação de hotéis e restaurantes
+ - Áreas como logística, saúde, votação e propriedade intelectual já usam
 
 
 
-&nbsp;- RWA: ativos do mundo real
+ - Supply-Chain: gestão da cadeia de abastecimento
 
-&nbsp;- "Marco das moedas sociais"
+ - Turismo: avaliação de hotéis e restaurantes
+
+
+
+ - RWA: ativos do mundo real
+
+ - "Marco das moedas sociais"
 
 
 
 * **Sistemas computacionais**
 
-&nbsp;- EINIAC: primeiro computador, levava 12s para efetuar uma soma.
+ - EINIAC: primeiro computador, levava 12s para efetuar uma soma.
 
 
 
-&nbsp;- No início:
+ - No início:
 
-&nbsp;	- Monolíticos
+ 	- Monolíticos
 
-&nbsp;	- Processamento centralizado
+ 	- Processamento centralizado
 
-&nbsp;	- Terminal burro: interface de solicitação e devolução, não realiza processamento.
+ 	- Terminal burro: interface de solicitação e devolução, não realiza processamento.
 
-&nbsp;- Evolução:
+ - Evolução:
 
-&nbsp;	- Personal computer
+ 	- Personal computer
 
-&nbsp;	- Surgimento da Internet
+ 	- Surgimento da Internet
 
-&nbsp;	- Arquitetura Cliente - Servidor
+ 	- Arquitetura Cliente - Servidor
 
-&nbsp;	- BBS (provedores)
+ 	- BBS (provedores)
 
-&nbsp;	- Web1.0: conteúdo estático (html)
+ 	- Web1.0: conteúdo estático (html)
 
-&nbsp;	- Web2.0: redes sociais
+ 	- Web2.0: redes sociais
 
-&nbsp;- Hoje:
+ - Hoje:
 
-&nbsp;	- Computação distribuída
+ 	- Computação distribuída
 
-&nbsp;
+ 
 
-&nbsp;- Web 4: pegar as tecnologias da Web3.0 e conectar dispositivos inteligentes
+ - Web 4: pegar as tecnologias da Web3.0 e conectar dispositivos inteligentes
 
 
 
 * **Modelos computacionais:**
 
-&nbsp;- Sistemas Centralizado:
+ - Sistemas Centralizado:
 
-&nbsp;	- Aplicação cliente-servidor
-
-
-
-&nbsp;- Sistemas Distribuídos:
-
-&nbsp;	- Um servidor replicado em vários nós (Internet)
+ 	- Aplicação cliente-servidor
 
 
 
-&nbsp;- Sistemas Descentralizados:
+ - Sistemas Distribuídos:
 
-&nbsp;	- Pear to Pear (redes P2P)
-
-&nbsp;	- Blockchain
-
-&nbsp;	- Cada usuário é parte da aplicação, mas difícil de derrubar
+ 	- Um servidor replicado em vários nós (Internet)
 
 
 
-&nbsp;- Sistemas Hibridos:
+ - Sistemas Descentralizados:
+
+ 	- Pear to Pear (redes P2P)
+
+ 	- Blockchain
+
+ 	- Cada usuário é parte da aplicação, mas difícil de derrubar
+
+
+
+ - Sistemas Hibridos:
 
 
 
 * **Blockchain:**
 
-&nbsp;- É um registro distribuído de ativos e transações
+ - É um registro distribuído de ativos e transações
 
-&nbsp;- Armazenamento em forma de blocos de dados
+ - Armazenamento em forma de blocos de dados
 
-&nbsp;- Blocos criptograficamente vinculados
+ - Blocos criptograficamente vinculados
 
-&nbsp;- Blocos são criados por transações
+ - Blocos são criados por transações
 
-&nbsp;- Validação distribuídas por nós de rede
+ - Validação distribuídas por nós de rede
 
-&nbsp;- Consumo elevado de energia
+ - Consumo elevado de energia
 
-&nbsp;- É imutável
+ - É imutável
 
-&nbsp;- Se paga para interagir com a blockchain
+ - Se paga para interagir com a blockchain
 
-&nbsp;- O conceito tem origem no modelo **file-sharing**
+ - O conceito tem origem no modelo **file-sharing**
 
 
 
 **Nodes (nós):**
 
-&nbsp;- Computadores ou dispositivos que interagem com o sistema, validando transações.
+ - Computadores ou dispositivos que interagem com o sistema, validando transações.
 
-&nbsp;- Full nodes
+ - Full nodes
 
-&nbsp;- Light nodes
+ - Light nodes
 
-&nbsp;- Archive nodes
+ - Archive nodes
 
-&nbsp;- Nós mineradores
+ - Nós mineradores
 
-&nbsp;- Validadores
+ - Validadores
 
 
 
@@ -162,17 +162,17 @@ Blockchain é mais seguro e resistente a fraude.
 
 * **WEB 3.0**
 
-&nbsp;- Próxima revolução da internet
+ - Próxima revolução da internet
 
-&nbsp;- Criptomeodas
+ - Criptomeodas
 
-&nbsp;- NFTs
+ - NFTs
 
-&nbsp;- RWA
+ - RWA
 
-&nbsp;- DeFi
+ - DeFi
 
-&nbsp;- DAOs (Organizações Autônomas Descentralizadas)
+ - DAOs (Organizações Autônomas Descentralizadas)
 
 
 
@@ -202,11 +202,11 @@ Owner: dono do contrato, quem faz o deploy do contrato. É possível fazer funç
 
 * **Struct:**
 
-&nbsp;- Armazenar dados num contrato
+ - Armazenar dados num contrato
 
-&nbsp;- Como se fosse uma classe
+ - Como se fosse uma classe
 
-&nbsp;- Ex: Rastrear e registrar bateria com defeito
+ - Ex: Rastrear e registrar bateria com defeito
 
 
 
@@ -229,4 +229,17 @@ projeto: 0x95A0A6F7872a152B937DbDbC49f345ce271bFFbC
 evitar reentrância
 
 aplicar coisas de segurança
+
+
+
+contas criadas:
+
+* metamask
+* alchemy
+
+
+
+
+
+**DEPOIS PESQUISAR COMO FAZER UM SERVIDOR EM NODE.JS**
 

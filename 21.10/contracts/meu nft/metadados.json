@@ -1,0 +1,19 @@
+{
+    "name": "Weber Coin",
+    "description": "Esse é meu primeiro NFT simples criado na rede Arbitrm Sepolia usando Solidity.",
+    "image": "https://silver-calm-marten-605.mypinata.cloud/ipfs/bafkreicomnnhgdwut5jox2vcbf5nmcbkwryipufubweahdbvg553nyapou",
+    "atributes": [
+        {
+            "trait_type": "Rede",
+            "value": "Arbitrum Sepolia"
+        },
+        {
+            "trait_type": "Criado por",
+            "value": "Weber Coin"
+        },
+        {
+            "trait_type": "Categoria",
+            "value": "Criptocurrency"
+        }
+    ]
+}
