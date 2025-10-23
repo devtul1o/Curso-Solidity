@@ -47,4 +47,15 @@ contract BateriasDefeituosas {
     function listar() public view returns (Bateria[] memory) {
         return baterias;
     }
+
+    // Função para remover uma bateria defeituosa pelo índice
+    function removerBateria(uint index) public {
+        require(index < baterias.length, unicode"Índice inválido");
+
+        // Move a última bateria para o índice a ser removido
+        baterias[index] = baterias[baterias.length - 1];
+
+        // Remove a última bateria
+        baterias.pop();
+    }
 }

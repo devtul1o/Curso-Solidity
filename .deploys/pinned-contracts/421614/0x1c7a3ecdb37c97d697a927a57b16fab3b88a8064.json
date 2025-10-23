@@ -1,0 +1,60 @@
+{
+  "name": "VerficadorSimples",
+  "address": "0x1c7a3ecdb37c97d697a927a57b16fab3b88a8064",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "valor",
+          "type": "uint256"
+        }
+      ],
+      "name": "decrementar",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "valor",
+          "type": "uint256"
+        }
+      ],
+      "name": "incrementar",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "contador",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "verificarinvariavel",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "filePath": "electron/21.10/contracts/VerificadorSimples.sol",
+  "pinnedAt": 1761219051816
+}
